@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <!-- DB2C23
+    09569B -->
+<div class="main">
+  <div class="logo">
+  </div>
+    <div class="form-container">
+        <p class="title">Club Registration</p>
+        <form class="form" method="post" action="/submit">
+          
+          <input type="text" name="name" class="input" placeholder="Name" required aria-required="true">
+
+          <input type="text" name="usn" class="input" placeholder="USN" required aria-required="true">
+
+          <input type="text" name="department" class="input" placeholder="Department" required aria-required="true">
+
+           <select class="input" name="semester" aria-placeholder="Semester" required aria-required="true">
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+            <option value="5">5th</option>
+            <option value="6">6th</option>
+            <option value="7">7th</option>
+            <option value="7">8th</option>
+           </select>
+
+          <select class="input" name="club" aria-placeholder="Club" required aria-required="true">
+            <option value="technical">Technical Club</option>
+            <option value="science">Science Club</option>
+            <option value="ldc">LDC Club</option>
+            <option value="iedc">IEDC Club</option>
+            <option value="photograph">Photograph and Film Club</option>
+            <option value="nss">NSS Club</option>
+            <option value="sports">Sports Club</option>
+            <option value="life">Life Club</option>
+            <option value="athletics">Athletics Club</option>
+            <option value="handicraft">Handicraft Club</option>
+            <option value="health">Health Club</option>
+            <option value="nature">Nature Club</option>
+            <option value="robotics">Robotics Club</option>
+            <option value="arts">Arts Club</option>
+            <option value="Mathematics">Mathematics Club</option>
+          </select>
+
+          <button type="submit" id="submitButton">Submit</button>
+        </form> 
+      </div>
+</div>
+
+</body>
+</html>
