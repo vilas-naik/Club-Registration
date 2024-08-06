@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 //getting auth client 
-const serviceAccountKeyFile = "./club-registration-431313-7baaf645c270.json";
+const serviceAccountKeyFile = "./keys.json";
 const sheetId = '1RAyGgT7Q_wE_G-SkC-WOo9zjXope_woxOtK-dDSS8ok'
 const tabName = 'Sheet1'
 const range = 'A:E'
