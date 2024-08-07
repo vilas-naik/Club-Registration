@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 //getting auth client 
-const serviceAccountKeyFile = "/etc/secrets/keys.json";
+const serviceAccountKeyFile = "./keys.json";
 const sheetId = '1RAyGgT7Q_wE_G-SkC-WOo9zjXope_woxOtK-dDSS8ok'
 const tabName = 'Sheet1'
 const range = 'A:F'
@@ -58,12 +58,27 @@ app.get('/', (req, res) => {
   res.render('app',{display: null,club:null});
 })
 
+//get date and time
+let currentTime = new Date();
+let currentOffset = currentTime.getTimezoneOffset();
+let ISTOffset = 330;   // IST offset UTC +5:30 
+let ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset)*60000);
+// ISTTime now represents the time in IST coordinates
+let hoursIST = ISTTime.getHours()
+let minutesIST = ISTTime.getMinutes()
+let secondsIST = ISTTime.getSeconds()
+let time = hoursIST +':'+ minutesIST +':' + secondsIST;
 
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+let yyyy = today.getFullYear();
+today = mm + '/' + dd + '/' + yyyy;
 
 //form submission handling
 app.post('/submit', async (req, res) => {
   const { name, usn, department, semester, club } = req.body;
-  const data = [name, usn, department, semester, club, new Date().toLocaleString()];
+  const data = [name, usn, department, semester, club, time+','+today];
   let display;
 
   const googleSheetClient = await _getGoogleSheetClient();
