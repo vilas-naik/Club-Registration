@@ -28,7 +28,7 @@ body,html{
     padding: 1.5em 2.5em;
   }
   
-  .title {
+  .mainTitle {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     margin: 0.3em 0 0.9em 0;
@@ -50,9 +50,17 @@ body,html{
     outline: 0 !important;
     box-sizing: border-box;
     padding: 0.75em 0.938em;
+    transition: all 0.5s;
+
   }
 
-
+  .input:hover,
+  .input:focus {
+    border: 2px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+    background-color: white;
+  }
+  
   .buttons-container {
     width: 100%;
     display: flex;
@@ -86,6 +94,52 @@ body,html{
   color: black(255, 255, 255);
 }
 
+
+#card {
+  overflow: hidden;
+  position: absolute;
+  text-align: left;
+  border-radius: 0.5rem;
+  max-width: 290px;
+  box-shadow: 30px 30px 30px 30px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+  visibility: hidden;
+}
+
+.header {
+  padding: 1.25rem 1rem 1rem 1rem;
+}
+
+#image {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+}
+
+#image svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.content {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+
+.message {
+  margin-top: 0.5rem;
+  color: #595b5f;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .logo{
   height: 12em;
   width: 24em;
@@ -93,4 +147,8 @@ body,html{
   background-size:contain;
   background-repeat: no-repeat;
   margin-top: 2em;
+}
+
+.green{
+  background-color: #62ffa6;
 }

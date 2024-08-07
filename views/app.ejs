@@ -1,60 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Document</title>
-    <link rel="stylesheet" href="app.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>Club Registration</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+
+  <body>
     <!-- DB2C23
     09569B -->
-<div class="main">
-  <div class="logo">
-  </div>
-    <div class="form-container">
-        <p class="title">Club Registration</p>
+    <div class="main">
+      <div class="logo"></div>
+      <div class="form-container">
+        <p class="mainTitle">Club Registration</p>
         <form class="form" method="post" action="/submit">
-          
-          <input type="text" name="name" class="input" placeholder="Name" required aria-required="true">
+          <input
+            type="text"
+            name="name"
+            class="input"
+            placeholder="Name"
+            required
+            aria-required="true"
+          />
 
-          <input type="text" name="usn" class="input" placeholder="USN" required aria-required="true">
+          <input
+            type="text"
+            name="usn"
+            class="input"
+            placeholder="USN"
+            required
+            aria-required="true"
+          />
 
-          <input type="text" name="department" class="input" placeholder="Department" required aria-required="true">
+          <input
+            type="text"
+            name="department"
+            class="input"
+            placeholder="Department"
+            required
+            aria-required="true"
+          />
 
-           <select class="input" name="semester" aria-placeholder="Semester" required aria-required="true">
-            <option value="1">1st</option>
-            <option value="2">2nd</option>
-            <option value="3">3rd</option>
-            <option value="4">4th</option>
-            <option value="5">5th</option>
-            <option value="6">6th</option>
-            <option value="7">7th</option>
-            <option value="7">8th</option>
-           </select>
+          <select
+            class="input"
+            name="semester"
+            aria-placeholder="Semester"
+            required
+            aria-required="true"
+          >
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="5th">5th</option>
+            <option value="6th">6th</option>
+            <option value="7th">7th</option>
+            <option value="8th">8th</option>
+          </select>
 
-          <select class="input" name="club" aria-placeholder="Club" required aria-required="true">
-            <option value="technical">Technical Club</option>
-            <option value="science">Science Club</option>
-            <option value="ldc">LDC Club</option>
-            <option value="iedc">IEDC Club</option>
-            <option value="photograph">Photograph and Film Club</option>
-            <option value="nss">NSS Club</option>
-            <option value="sports">Sports Club</option>
-            <option value="life">Life Club</option>
-            <option value="athletics">Athletics Club</option>
-            <option value="handicraft">Handicraft Club</option>
-            <option value="health">Health Club</option>
-            <option value="nature">Nature Club</option>
-            <option value="robotics">Robotics Club</option>
-            <option value="arts">Arts Club</option>
-            <option value="Mathematics">Mathematics Club</option>
+          <select
+            class="input"
+            name="club"
+            aria-placeholder="Club"
+            required
+            aria-required="true"
+          >
+            <option value="Technical Club">Technical Club</option>
+            <option value="Science Club">Science Club</option>
+            <option value="LDC Club">LDC Club</option>
+            <option value="IEDC Club">IEDC Club</option>
+            <option value="Photograph and Film Club">
+              Photograph and Film Club
+            </option>
+            <option value="NSS Club">NSS Club</option>
+            <option value="Sports Club">Sports Club</option>
+            <option value="Life Club">Life Club</option>
+            <option value="Athletics Club">Athletics Club</option>
+            <option value="Handicraft Club">Handicraft Club</option>
+            <option value="Health Club">Health Club</option>
+            <option value="Nature Club">Nature Club</option>
+            <option value="Robotics Club">Robotics Club</option>
+            <option value="Arts Club">Arts Club</option>
+            <option value="Mathematics Club">Mathematics Club</option>
           </select>
 
           <button type="submit" id="submitButton">Submit</button>
-        </form> 
+        </form>
       </div>
-</div>
 
-</body>
+      <!-- <div id="displayBox" data-display=""></div> -->
+
+      <!-- cnsjcnsj -->
+      <div id="card" data-display="<%= display %>">
+        <div class="header">
+          <div id="image"></div>
+          <div class="content">
+            <span id="text">ff</span>
+          </div>
+        </div>
+      </div>
+      <!-- ncjncjdnj -->
+
+      <script>
+        const displayBox = document.getElementById("card");
+        const image = document.getElementById("image");
+        const text = document.getElementById("text");
+        const display = displayBox.getAttribute("data-display");
+        if (image.children.length > 0) {
+          image.children[0].classList.remove("red", "green");
+        }
+        image.classList.remove("red", "green");
+        //tick
+        const tick = `
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#000000" d="M20 7L9.00004 18L3.99994 13"></path></g></svg>`;
+        //cross
+        const cross = `
+          <svg viewBox="-2.5 -2.5 30.00 30.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ff0000" transform="rotate(0)" stroke-width="1.625"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.85"></g><g id="SVGRepo_iconCarrier"> <path d="M6.96967 16.4697C6.67678 16.7626 6.67678 17.2374 6.96967 17.5303C7.26256 17.8232 7.73744 17.8232 8.03033 17.5303L6.96967 16.4697ZM13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697L13.0303 12.5303ZM11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303L11.9697 11.4697ZM18.0303 7.53033C18.3232 7.23744 18.3232 6.76256 18.0303 6.46967C17.7374 6.17678 17.2626 6.17678 16.9697 6.46967L18.0303 7.53033ZM13.0303 11.4697C12.7374 11.1768 12.2626 11.1768 11.9697 11.4697C11.6768 11.7626 11.6768 12.2374 11.9697 12.5303L13.0303 11.4697ZM16.9697 17.5303C17.2626 17.8232 17.7374 17.8232 18.0303 17.5303C18.3232 17.2374 18.3232 16.7626 18.0303 16.4697L16.9697 17.5303ZM11.9697 12.5303C12.2626 12.8232 12.7374 12.8232 13.0303 12.5303C13.3232 12.2374 13.3232 11.7626 13.0303 11.4697L11.9697 12.5303ZM8.03033 6.46967C7.73744 6.17678 7.26256 6.17678 6.96967 6.46967C6.67678 6.76256 6.67678 7.23744 6.96967 7.53033L8.03033 6.46967ZM8.03033 17.5303L13.0303 12.5303L11.9697 11.4697L6.96967 16.4697L8.03033 17.5303ZM13.0303 12.5303L18.0303 7.53033L16.9697 6.46967L11.9697 11.4697L13.0303 12.5303ZM11.9697 12.5303L16.9697 17.5303L18.0303 16.4697L13.0303 11.4697L11.9697 12.5303ZM13.0303 11.4697L8.03033 6.46967L6.96967 7.53033L11.9697 12.5303L13.0303 11.4697Z" fill="#ffffff"></path> </g></svg>`;
+        if (display === "null") {
+          displayBox.style.visibility = "hidden";
+        } else if (display === "false") {
+          image.innerHTML = cross;
+          text.textContent = "Already Registered";
+          displayBox.style.visibility = "visible";
+          setTimeout(() => {
+            displayBox.style.visibility = "hidden";
+          }, 5000);
+        } else if (display === "true") {
+          image.innerHTML = tick;
+          text.textContent = "Successfully Registered";
+          image.classList.add("green");
+          text.style.color = "#009b43";
+          displayBox.style.visibility = "visible";
+          setTimeout(() => {
+            displayBox.style.visibility = "hidden";
+          }, 5000);
+        }
+      </script>
+    </div>
+  </body>
 </html>

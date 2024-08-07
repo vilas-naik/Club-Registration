@@ -54,8 +54,8 @@ async function _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, dat
 
 
 //homepage get request
-app.get('/', async (req, res) => {
-  res.render('app');
+app.get('/', (req, res) => {
+  res.render('app',{display: null,club:null});
 })
 
 
@@ -64,23 +64,20 @@ app.get('/', async (req, res) => {
 app.post('/submit', async (req, res) => {
   const { name, usn, department, semester, club } = req.body;
   const data = [name, usn, department, semester, club];
+  let display;
 
   const googleSheetClient = await _getGoogleSheetClient();
   const sheetData = await _readGoogleSheet(googleSheetClient, sheetId, tabName, range);
   const submittedUSN = sheetData.slice(1).map(subArray => subArray[1]);
 
   if (submittedUSN.includes(usn)) {
-    console.log("already Submitted");
+    display = false;
   } else {
-    const googleSheetClient = await _getGoogleSheetClient();
     await _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, data)
+    display = true;
   }
-  res.redirect('/');
+  res.render('app',{display:display,club:club});
 })
-
-
-
-
 
 
 
