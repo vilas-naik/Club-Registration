@@ -19,8 +19,8 @@ body,html{
 }
 
 .form-container {
-    width: 24em;
-    height: 30em;
+    width: 22em;
+    height: 28em;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
@@ -32,7 +32,7 @@ body,html{
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     margin: 0.3em 0 0.9em 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
   }
   
@@ -142,7 +142,7 @@ body,html{
 
 .logo{
   height: 12em;
-  width: 24em;
+  width: 22em;
   background-image: url('./tjit.jpg');
   background-size:contain;
   background-repeat: no-repeat;
