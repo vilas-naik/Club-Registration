@@ -25,7 +25,15 @@
             aria-required="true"
             autocomplete="off"
           />
-
+          <input
+          type="text"
+          name="rollno"
+          class="input"
+          placeholder="Roll No"
+          required
+          aria-required="true"
+          autocomplete="off"
+        />
           <input
             type="text"
             name="usn"
@@ -35,34 +43,43 @@
             aria-required="true"
             autocomplete="off"
           />
+          <input
+          type="text"
+          name="year"
+          class="input"
+          placeholder="Year"
+          required
+          aria-required="true"
+          autocomplete="off"
+        />
 
           <input
             type="text"
-            name="department"
+            name="branch"
             class="input"
-            placeholder="Department"
+            placeholder="Branch"
             required
             aria-required="true"
             autocomplete="off"
           />
-
-          <select
+          <input
+            type="text"
+            name="phone"
             class="input"
-            name="semester"
-            aria-placeholder="Semester"
+            placeholder="Whatsapp Mobile Number"
             required
             aria-required="true"
-          >
-            <option value="1st">1st</option>
-            <option value="2nd">2nd</option>
-            <option value="3rd">3rd</option>
-            <option value="4th">4th</option>
-            <option value="5th">5th</option>
-            <option value="6th">6th</option>
-            <option value="7th">7th</option>
-            <option value="8th">8th</option>
-          </select>
-
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="email"
+            class="input"
+            placeholder="College E-Mail"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
           <select
             class="input"
             name="club"
@@ -72,37 +89,45 @@
             id="clubSelect"
           >
             <option disabled selected value>-- Select a Club --</option>
-            <option value="Technical Club" id="Technical Club">
-              Technical Club
-            </option>
-            <option value="Science Club" id="Science Club">Science Club</option>
-            <option value="LDC Club" id="LDC Club">LDC Club</option>
-            <option value="IEDC Club" id="IEDC Club ">IEDC Club</option>
-            <option
-              value="Photograph and Film Club"
-              id="Photograph and Film Club "
-            >
-              Photograph and Film Club
-            </option>
+            <option value="NextGen Tech Club" id="NextGen Tech Club">NextGen Tech Club</option>
+            <option value="Sci-ingenuity Club" id="Sci-ingenuity Club">Sci-ingenuity Club</option>
+            <option value="Literature and Debate Club" id="Literature and Debate Club">Literature and Debate Club</option>
+            <option value="Innovation Club" id="Innovation Club ">Innovation Club</option>
+            <option value="Media Club" id="Media Club ">Media Club</option>
             <option value="NSS Club" id="NSS Club ">NSS Club</option>
-            <option value="Sports Club" id="Sports Club">Sports Club</option>
-            <option value="Life Club" id="Life Club">Life Club</option>
-            <option value="Athletics Club" id="Athletics Club">
-              Athletics Club
-            </option>
+            <option value="Outdoor Games Club" id="Outdoor Games Club">Outdoor Games Club</option>
+            <option value="Indoor Games Club" id="Indoor Games Club">Indoor Games Club</option>
             <option value="Handicraft Club" id="Handicraft Club">
               Handicraft Club
             </option>
-            <option value="Health Club" id="Health Club">Health Club</option>
-            <option value="Nature Club" id="Nature Club">Nature Club</option>
+            <option value="Wellness Warriors Club" id="Wellness Warriors Club">Wellness Warriors Club</option>
+            <option value="Nature Nurturers Club" id="Nature Nurturers Club">Nature Nurturers Club</option>
             <option value="Robotics Club" id="Robotics Club">
               Robotics Club
             </option>
-            <option value="Arts Club" id="Arts Club">Arts Club</option>
+            <option value="Dance & Music Club" id="Dance & Music Club">Dance & Music Club</option>
             <option value="Mathematics Club" id="Mathematics Club">
               Mathematics Club
             </option>
+            <option value="Fine Arts Club" id="Fine Arts Club">Fine Arts Club</option>
+            <option value="Coding Club" id="Coding Club">Coding Club</option>
+            <option value="Cyber Club" id="Cyber Club">Cyber Club</option>
+            <option value="Finance & Investment Club" id="Finance & Investment Club">Finance & Investment Club</option>
+            <option value="Life Club" id="Life Club">
+              Life Club
+            </option>
+            <option value="Fashion Club" id="Fashion Club">Fashion Club</option>
           </select>
+
+          <input
+            type="text"
+            name="expectation"
+            class="input"
+            placeholder="Expectation"
+            required
+            aria-required="true"
+            autocomplete="off"
+          />
 
           <button type="submit" id="submitButton">Submit</button>
         </form>
@@ -137,7 +162,7 @@
             let clubName = option.value;
             let club = clubCountList.find((c) => c.hasOwnProperty(clubName));
             let count = club ? club[clubName] : 0;
-            let remainingSlots = 60 - count;
+            let remainingSlots = 39 - count;
             let spaces = '&nbsp;'.repeat(5);
     option.innerHTML = `${clubName}${spaces}(${remainingSlots} slots left)`;
 

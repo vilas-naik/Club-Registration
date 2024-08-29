@@ -10,22 +10,25 @@ body,html{
 .main{
   height: 100dvh;
   width: 100dvw;
+  overflow-x: hidden;
   display: grid;
   place-items: center;
   background-image: url('./bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   grid-template-rows: 1fr 4fr;
+  background-attachment: fixed;
 }
 
 .form-container {
     width: 22em;
-    height: 28em;
+    height: 45em;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 1.5em 2.5em;
+    margin-bottom: 2em;
   }
   
   .mainTitle {

@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const serviceAccountKeyFile = "./keys.json";
 const sheetId = '1RAyGgT7Q_wE_G-SkC-WOo9zjXope_woxOtK-dDSS8ok'
 const tabName = 'Sheet1'
-const range = 'A:F'
+const range = 'A:J'
 
 async function _getGoogleSheetClient() {
   const auth = new google.auth.GoogleAuth({
@@ -94,14 +94,13 @@ today = mm + '/' + dd + '/' + yyyy;
 
 //form submission handling
 app.post('/submit', async (req, res) => {
-  const { name, usn, department, semester, club } = req.body;
-  const data = [name, usn, department, semester, club, time + ',' + today];
+  const { name,rollno, usn, year, branch,phone,email, club,expectation } = req.body;
+  const data = [name,rollno, usn, year, branch,phone,email, club,expectation, time + ',' + today];
   let display;
 
   const googleSheetClient = await _getGoogleSheetClient();
   const sheetData = await _readGoogleSheet(googleSheetClient, sheetId, tabName, range);
-  const submittedUSN = sheetData.slice(1).map(subArray => subArray[1]);
-
+  const submittedUSN = sheetData.slice(1).map(subArray => subArray[2]);
   if (submittedUSN.includes(usn)) {
     display = false;
   } else {
