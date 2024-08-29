@@ -100,8 +100,14 @@ app.post('/submit', async (req, res) => {
 
   const googleSheetClient = await _getGoogleSheetClient();
   const sheetData = await _readGoogleSheet(googleSheetClient, sheetId, tabName, range);
-  const submittedUSN = sheetData.slice(1).map(subArray => subArray[2]);
-  if (submittedUSN.includes(usn)) {
+  let submittedUSN=[];
+  const sliced = sheetData.slice(1);
+  sliced.forEach(element => {
+    submittedUSN.push(element[1])
+    submittedUSN.push(element[2])
+  });
+  console.log(submittedUSN);
+  if (submittedUSN.includes(rollno,usn)) {
     display = false;
   } else {
     await _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, data)
