@@ -43,25 +43,39 @@
             aria-required="true"
             autocomplete="off"
           />
-          <input
-          type="text"
-          name="year"
-          class="input"
-          placeholder="Year"
-          required
-          aria-required="true"
-          autocomplete="off"
-        />
-
-          <input
-            type="text"
-            name="branch"
+         
+        <select
             class="input"
-            placeholder="Branch"
+            name="year"
+            aria-placeholder="Year"
             required
             aria-required="true"
-            autocomplete="off"
-          />
+          >
+          <option disabled selected value>-- Select your Year --</option>
+          <option value="1st" id="1st">1st year</option>
+          <option value="2nd" id="2nd">2nd year</option>
+          <option value="3rd" id="3rd">3rd year</option>
+          <option value="4th" id="4th">4th year</option>
+
+</select>
+          <select
+            class="input"
+            name="branch"
+            aria-placeholder="Branch"
+            required
+            aria-required="true"
+          >
+          <option disabled selected value>-- Select a Branch --</option>
+          <option value="CSE A" id="CSE A">CSE A</option>
+          <option value="CSE B" id="CSE B">CSE B</option>
+          <option value="ISE" id="ISE">ISE</option>
+          <option value="ECE" id="ECE">ECE</option>
+          <option value="AIML" id="AIML">AIML</option>
+          <option value="DS" id="DS">DS</option>
+          <option value="IOT" id="IOT">IOT</option>
+
+        </select>
+
           <input
             type="text"
             name="phone"
