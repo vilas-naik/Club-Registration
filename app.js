@@ -1,9 +1,12 @@
 import express from 'express'
 import { google } from "googleapis";
 import bodyParser from "body-parser";
+import { CronJob } from 'cron';
+import https from 'https';
 
 const app = express()
 const port = 3000
+const backendUrl = 'https://club-registration-v23y.onrender.com';
 const submittedUSN = [];
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
@@ -106,7 +109,6 @@ app.post('/submit', async (req, res) => {
     submittedUSN.push(element[1])
     submittedUSN.push(element[2])
   });
-  console.log(submittedUSN);
   if (submittedUSN.includes(rollno,usn)) {
     display = false;
   } else {
@@ -122,3 +124,26 @@ app.post('/submit', async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+
+
+
+
+
+
+const job = new CronJob('*/14 * * * *', function () {
+  console.log('Restarting server');
+  https
+    .get(backendUrl, (res) => {
+      if (res.statusCode === 200) {
+        console.log('Server restarted');
+      } else {
+        console.error(`Failed to restart server with status code: ${res.statusCode}`);
+      }
+    })
+    .on('error', (err) => {
+      console.error('Error during restart:', err.message);
+    });
+});
+
+export { job };
