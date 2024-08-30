@@ -109,7 +109,7 @@ app.post('/submit', async (req, res) => {
     submittedUSN.push(element[1])
     submittedUSN.push(element[2])
   });
-  if (submittedUSN.includes(rollno,usn)) {
+  if (submittedUSN.includes(rollno) || submittedUSN.includes(usn)) {
     display = false;
   } else {
     await _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, data)
@@ -132,7 +132,6 @@ app.listen(port, () => {
 
 
 const job = new CronJob('*/14 * * * *', function () {
-  console.log('Restarting server');
   https
     .get(backendUrl, (res) => {
       if (res.statusCode === 200) {
