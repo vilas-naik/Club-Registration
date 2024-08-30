@@ -2,6 +2,7 @@ import express from 'express'
 import { google } from "googleapis";
 import bodyParser from "body-parser";
 import { CronJob } from 'cron';
+import cron from "node-cron";
 import https from 'https';
 
 const app = express()
@@ -139,18 +140,17 @@ app.listen(port, () => {
 
 
 //cron job
-const job = new CronJob('*/14 * * * *', function () {
+cron.schedule('*/14 * * * *', () => {
   https
-    .get(backendUrl, (res) => {
-      if (res.statusCode === 200) {
-        console.log('Server restarted');
-      } else {
-        console.error(`Failed to restart server with status code: ${res.statusCode}`);
-      }
-    })
-    .on('error', (err) => {
-      console.error('Error during restart:', err.message);
-    });
-});
+  .get(backendUrl, (res) => {
+    if (res.statusCode === 200) {
+      console.log('Server restarted');
+    } else {
+      console.error(`Failed to restart server with status code: ${res.statusCode}`);
+    }
+  })
+  .on('error', (err) => {
+    console.error('Error during restart:', err.message);
+  });
+  });
 
-export { job };
