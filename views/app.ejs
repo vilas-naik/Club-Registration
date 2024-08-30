@@ -157,9 +157,9 @@
           options.forEach((option, index) => {
             if (index === 0) return;
 
-            let clubName = option.value;
+            let clubName = option.value.trim();
             let club = clubCountList.find((c) => c.hasOwnProperty(clubName));
-            let count = club ? club[clubName] : 0;
+            let count = club ? parseInt(club[clubName], 10) : 0;
             let remainingSlots = 39 - count;
             let spaces = '&nbsp;'.repeat(5);
     option.innerHTML = `${clubName}${spaces}(${remainingSlots} slots left)`;
@@ -190,7 +190,14 @@
             displayBox.style.visibility = "visible";
             setTimeout(() => {
               displayBox.style.visibility = "hidden";
-            }, 5000);
+            }, 3500);
+          }else if (display === "full") {
+            image.innerHTML = cross;
+            text.textContent = "Club is Full";
+            displayBox.style.visibility = "visible";
+            setTimeout(() => {
+              displayBox.style.visibility = "hidden";
+            }, 3500);
           } else if (display === "true") {
             image.innerHTML = tick;
             text.textContent = "Successfully Registered";
@@ -199,7 +206,7 @@
             displayBox.style.visibility = "visible";
             setTimeout(() => {
               displayBox.style.visibility = "hidden";
-            }, 5000);
+            }, 3500);
           }
         });
       </script>

@@ -8,6 +8,7 @@ const app = express()
 const port = 3000
 const backendUrl = 'https://club-registration-v23y.onrender.com';
 const submittedUSN = [];
+let clubCountList ;
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -58,18 +59,18 @@ async function _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, dat
 async function clubCount() {
   const googleSheetClient = await _getGoogleSheetClient();
   const sheetData = await _readGoogleSheet(googleSheetClient, sheetId, tabName, range);
-  const regClubList = sheetData.slice(1).map(subArray => subArray[4]);
+  const regClubList = sheetData.slice(1).map(subArray => subArray[7]);
   let clubCount = regClubList.reduce((acc, club) => {
     acc[club] = (acc[club] || 0) + 1;
     return acc;
   }, {});
-  return Object.entries(clubCount).map(([club, count]) => ({ [club]: count }));
+  clubCountList= Object.entries(clubCount).map(([club, count]) => ({ [club]: count }));
 }
 
 // Homepage get request
 app.get('/', async (req, res) => {
   try {
-    const clubCountList = await clubCount();
+    await clubCount();
     res.render('app', { display: null, club: null,clubCountList: clubCountList});
   } catch (error) {
     console.error(error);
@@ -91,13 +92,17 @@ let time = hoursIST + ':' + minutesIST + ':' + secondsIST;
 
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, '0');
-let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+let mm = String(today.getMonth() + 1).padStart(2, '0');
 let yyyy = today.getFullYear();
 today = mm + '/' + dd + '/' + yyyy;
 
 //form submission handling
 app.post('/submit', async (req, res) => {
+  await clubCount();
   const { name,rollno, usn, year, branch,phone,email, club,expectation } = req.body;
+  const selectedClub = clubCountList.find(c => c.hasOwnProperty(club));
+  let isnotEligible = false;
+  if(selectedClub){isnotEligible = selectedClub[club] >= 39;}
   const data = [name,rollno, usn, year, branch,phone,email, club,expectation, time + ',' + today];
   let display;
 
@@ -109,13 +114,16 @@ app.post('/submit', async (req, res) => {
     submittedUSN.push(element[1])
     submittedUSN.push(element[2])
   });
-  if (submittedUSN.includes(rollno) || submittedUSN.includes(usn)) {
+  if (submittedUSN.includes(rollno) || submittedUSN.includes(usn) ) {
     display = false;
-  } else {
+  }else if(isnotEligible){
+    display = 'full'
+  } 
+  else {
     await _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, data)
     display = true;
   }
-  const clubCountList = await clubCount();
+  await clubCount();
   res.render('app', { display: display, club: club,clubCountList: clubCountList});
 })
 
@@ -130,7 +138,7 @@ app.listen(port, () => {
 
 
 
-
+//cron job
 const job = new CronJob('*/14 * * * *', function () {
   https
     .get(backendUrl, (res) => {
