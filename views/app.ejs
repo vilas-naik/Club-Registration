@@ -55,7 +55,6 @@
           <option value="1st" id="1st">1st year</option>
           <option value="2nd" id="2nd">2nd year</option>
           <option value="3rd" id="3rd">3rd year</option>
-          <option value="4th" id="4th">4th year</option>
 
 </select>
           <select
@@ -174,7 +173,7 @@
             let clubName = option.value.trim();
             let club = clubCountList.find((c) => c.hasOwnProperty(clubName));
             let count = club ? parseInt(club[clubName], 10) : 0;
-            let remainingSlots = 39 - count;
+            let remainingSlots = 30 - count;
             let spaces = '&nbsp;'.repeat(5);
     option.innerHTML = `${clubName}${spaces}(${remainingSlots} slots left)`;
 

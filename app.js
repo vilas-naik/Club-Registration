@@ -103,7 +103,7 @@ app.post('/submit', async (req, res) => {
   const { name,rollno, usn, year, branch,phone,email, club,expectation } = req.body;
   const selectedClub = clubCountList.find(c => c.hasOwnProperty(club));
   let isnotEligible = false;
-  if(selectedClub){isnotEligible = selectedClub[club] >= 39;}
+  if(selectedClub){isnotEligible = selectedClub[club] >= 30;}
   const data = [name,rollno, usn, year, branch,phone,email, club,expectation, time + ',' + today];
   let display;
 
