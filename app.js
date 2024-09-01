@@ -115,7 +115,7 @@ app.post('/submit', async (req, res) => {
     submittedUSN.push(element[1])
     submittedUSN.push(element[2])
   });
-  if (submittedUSN.includes(rollno) || submittedUSN.includes(usn) ) {
+  if (submittedUSN.includes(rollno)) {
     display = false;
   }else if(isnotEligible){
     display = 'full'
