@@ -89,7 +89,7 @@ app.post('/submit', async (req, res) => {
   const selectedClub = clubCountList.find(c => c.hasOwnProperty(club));
   let isnotEligible = false;
   if(selectedClub){isnotEligible = selectedClub[club] >= 7;}
-  const data = [name,rollno, year, branch,phone, club,expectation];
+  const data = [name,rollno.toUpperCase(), year, branch,phone, club,expectation];
   let display;
 
   const googleSheetClient = await _getGoogleSheetClient();
