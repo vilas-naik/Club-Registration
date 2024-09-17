@@ -34,13 +34,6 @@
           aria-required="true"
           autocomplete="off"
         />
-          <input
-            type="text"
-            name="usn"
-            class="input"
-            placeholder="USN"
-            autocomplete="off"
-          />
          
         <select
             class="input"
@@ -50,9 +43,7 @@
             aria-required="true"
           >
           <option disabled selected value>-- Select your Year --</option>
-          <option value="1st" id="1st">1st year</option>
-          <option value="2nd" id="2nd">2nd year</option>
-          <option value="3rd" id="3rd">3rd year</option>
+          <option value="1st" id="1st" selected="selected">1st year</option>
 
 </select>
           <select
@@ -80,13 +71,6 @@
             placeholder="Whatsapp Mobile Number"
             required
             aria-required="true"
-            autocomplete="off"
-          />
-          <input
-            type="text"
-            name="email"
-            class="input"
-            placeholder="College E-Mail"
             autocomplete="off"
           />
           <select
@@ -169,7 +153,7 @@
             let clubName = option.value.trim();
             let club = clubCountList.find((c) => c.hasOwnProperty(clubName));
             let count = club ? parseInt(club[clubName], 10) : 0;
-            let remainingSlots = 30 - count;
+            let remainingSlots = 7 - count;
             let spaces = '&nbsp;'.repeat(5);
     option.innerHTML = `${clubName}${spaces}(${remainingSlots} slots left)`;
 

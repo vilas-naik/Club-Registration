@@ -17,9 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 //getting auth client 
 const serviceAccountKeyFile = "./keys.json";
-const sheetId = '1RAyGgT7Q_wE_G-SkC-WOo9zjXope_woxOtK-dDSS8ok'
+const sheetId = '1UEQ7k_KiRFg_q5jdhkYLzlVq1OZ2LCJgOmtQL-udTBA'
 const tabName = 'Sheet1'
-const range = 'A:J'
+const range = 'A:G'
 
 async function _getGoogleSheetClient() {
   const auth = new google.auth.GoogleAuth({
@@ -60,7 +60,7 @@ async function _writeGoogleSheet(googleSheetClient, sheetId, tabName, range, dat
 async function clubCount() {
   const googleSheetClient = await _getGoogleSheetClient();
   const sheetData = await _readGoogleSheet(googleSheetClient, sheetId, tabName, range);
-  const regClubList = sheetData.slice(1).map(subArray => subArray[7]);
+  const regClubList = sheetData.slice(1).map(subArray => subArray[5]);
   let clubCount = regClubList.reduce((acc, club) => {
     acc[club] = (acc[club] || 0) + 1;
     return acc;
@@ -80,22 +80,7 @@ app.get('/', async (req, res) => {
 });
 
 
-//get date and time
-let currentTime = new Date();
-let currentOffset = currentTime.getTimezoneOffset();
-let ISTOffset = 330;   // IST offset UTC +5:30 
-let ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset) * 60000);
-// ISTTime now represents the time in IST coordinates
-let hoursIST = ISTTime.getHours()
-let minutesIST = ISTTime.getMinutes()
-let secondsIST = ISTTime.getSeconds()
-let time = hoursIST + ':' + minutesIST + ':' + secondsIST;
 
-let today = new Date();
-let dd = String(today.getDate()).padStart(2, '0');
-let mm = String(today.getMonth() + 1).padStart(2, '0');
-let yyyy = today.getFullYear();
-today = mm + '/' + dd + '/' + yyyy;
 
 //form submission handling
 app.post('/submit', async (req, res) => {
@@ -103,8 +88,8 @@ app.post('/submit', async (req, res) => {
   const { name,rollno, usn, year, branch,phone,email, club,expectation } = req.body;
   const selectedClub = clubCountList.find(c => c.hasOwnProperty(club));
   let isnotEligible = false;
-  if(selectedClub){isnotEligible = selectedClub[club] >= 30;}
-  const data = [name,rollno, usn, year, branch,phone,email, club,expectation, time + ',' + today];
+  if(selectedClub){isnotEligible = selectedClub[club] >= 7;}
+  const data = [name,rollno, year, branch,phone, club,expectation];
   let display;
 
   const googleSheetClient = await _getGoogleSheetClient();
@@ -113,7 +98,6 @@ app.post('/submit', async (req, res) => {
   const sliced = sheetData.slice(1);
   sliced.forEach(element => {
     submittedUSN.push(element[1])
-    submittedUSN.push(element[2])
   });
   if (submittedUSN.includes(rollno)) {
     display = false;
